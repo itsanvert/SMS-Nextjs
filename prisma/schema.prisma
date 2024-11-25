@@ -12,3 +12,75 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// model Admin {
+ 
+// }
+
+
+ model Student{
+   id        String  @id
+  username  String  @unique
+  name      String
+  surname   String
+  email     String
+  phone     String
+  address   String
+  img       String
+  bloodType String
+  sex       UserSex
+  createAt DateTime @default(now())
+  parentId String
+  parent Parent @relation(fields: [parentId],references: [id] )
+ }
+
+ model Teacher{
+  id        String  @id
+  username  String  @unique
+  name      String
+  surname   String
+  email     String
+  phone     String
+  address   String
+  img       String
+  bloodType String
+  sex       UserSex
+  createAt DateTime @default(now())
+ }
+
+ model Parent{
+  id        String  @id
+  username  String  @unique
+  name      String
+  surname   String
+  email     String
+  phone     String
+  address   String
+  createAt DateTime @default(now())
+  students Student[]
+ }
+
+// model Grade{}
+
+// model Subject{}
+
+// model Lesson{}
+
+// model Exam{}
+
+// model Assignment{}
+
+// model Result{}
+
+// model Attendance{}
+
+// model Event{}
+
+// model Announment{}
+
+// model Event{}
+
+enum UserSex {
+  MALE
+  FEMALE
+}
